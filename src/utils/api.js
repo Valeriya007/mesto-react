@@ -5,9 +5,10 @@ class Api {
       this._authorization = config.headers.authorization;
     }
   
-    /*проверка на ошибки*/
-    _checkResponse(res) {return res.ok ? res.json() : Promise.reject};
-  
+    /*проверка на ошибки*/    
+    _checkResponse(res) {
+      return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)    
+    };
   
     /*запрос данных о пользователе с сервера*/
     getUserInfo() {

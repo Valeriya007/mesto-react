@@ -18,6 +18,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
         dataCard.forEach(element => element.myId = dataUser._id);
         setCards(dataCard)
       })
+      .catch((error => console.error(`Ошибка ${error}`)))
   },[])
 
   return (
@@ -39,12 +40,10 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
       </section>
       <section className="photo-grid"
         aria-label="Карточки с фотографиями">    
-        {cards.map((card) => (
+        {cards.map((card, id) => (
           <Card
-          name={card.name}
-          link={card.link}
-          key={card._id}
-          likes={card.likes}
+          card={card}
+          key={id}          
           onCardClick = {onCardClick}
           />
         ))}            

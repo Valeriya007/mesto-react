@@ -1,7 +1,7 @@
 export default function ImagePopup({card, onClose}) {
   return (
     <section 
-    className={card.name ? 'popup popup_content_image popup_opened' : 'popup popup_content_image'}>        
+    className={`popup popup_content_image ${card.name ? 'popup_opened' : ''}`}>        
       <div className="popup__container popup__container_type_image">
         <button
         className="popup__btn-close popup__btn-close_image"

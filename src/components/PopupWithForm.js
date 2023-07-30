@@ -1,6 +1,6 @@
 export default function PopupWithForm({ name, title, button, children, isOpen, onClose }) {
   return (
-    <section className={`popup popup_content_${name} ${isOpen && 'popup_opened'}`}>
+    <section className={`popup popup_content_${name} ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container">
         <button
         className="popup__btn-close" 

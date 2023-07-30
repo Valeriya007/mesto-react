@@ -1,21 +1,25 @@
-export default function Card({ name, link, likes, onCardClick }) {
-  return (
+export default function Card({ card, onCardClick }) {
+  function handleClick() {
+    onCardClick({ link: card.link, name: card.name })
+  }
+  
+  return (    
     <article className="card">
       <button 
       className="card__delete-btn" 
       type="button" 
       />
       <img
-       src={link} 
-       alt={name} 
+       src={card.link} 
+       alt={card.name} 
        className="card__image" 
-       onClick={() => onCardClick({link: link, name: name})}
+       onClick={handleClick}      
        />
       <div className="card__info">
-        <h2 className="card__title">{name}</h2>
+        <h2 className="card__title">{card.name}</h2>
         <div className="card__like-group">
           <button className="card__like-btn" type="button" />
-          <span className="card__like-counter">{likes.length}</span>
+          <span className="card__like-counter">{card.likes.length}</span>
         </div>
       </div>
     </article>
