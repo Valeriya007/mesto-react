@@ -40,10 +40,10 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
       </section>
       <section className="photo-grid"
         aria-label="Карточки с фотографиями">    
-        {cards.map((card, id) => (
+        {cards.map((card) => (
           <Card
           card={card}
-          key={id}          
+          key={card._id}          
           onCardClick = {onCardClick}
           />
         ))}            
