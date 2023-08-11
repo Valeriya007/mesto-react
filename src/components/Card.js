@@ -1,14 +1,29 @@
-export default function Card({ card, onCardClick }) {
+import { useContext } from "react"
+import CurrentUserContext from "../contexts/CurrentUserContext"
+import CardLikeGroup from "./CardLikeGroup";
+
+export default function Card({ card, onCardClick, onCardDelete }) {   
+  const currentUser = useContext(CurrentUserContext)
+
+  const isOwn = card.owner._id === currentUser._id;  
+  
+
   function handleClick() {
     onCardClick({ link: card.link, name: card.name })
   }
+
+  function handleDeleteClick() {
+    onCardDelete({ link: card.link, name: card.name })
+  }
+  
   
   return (    
     <article className="card">
-      <button 
-      className="card__delete-btn" 
+      {isOwn && 
+      <button className="card__delete-btn" 
       type="button" 
-      />
+      onClick={handleDeleteClick} 
+      />}      
       <img
        src={card.link} 
        alt={card.name} 
@@ -16,11 +31,14 @@ export default function Card({ card, onCardClick }) {
        onClick={handleClick}      
        />
       <div className="card__info">
-        <h2 className="card__title">{card.name}</h2>
-        <div className="card__like-group">
-          <button className="card__like-btn" type="button" />
-          <span className="card__like-counter">{card.likes.length}</span>
-        </div>
+        <h2 className="card__title">
+        {card.name}
+        </h2>
+        <CardLikeGroup
+        likes={card.likes}
+        myId={currentUser._id}
+        cardId={card._id}
+        />
       </div>
     </article>
   )    
